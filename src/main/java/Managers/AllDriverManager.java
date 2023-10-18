@@ -9,12 +9,17 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
+import java.util.ArrayList;
 
 import java.util.concurrent.TimeUnit;
 
+/* AllDriverManager created to manage all the webdDiver functions, attributes and objects in this framework and
+actually starts and stops the automation framework from running */
 public class AllDriverManager {
 
+    /* Instantiating all objects required when defining the AllDriverManager class */
     private WebDriver webDriver;
     private static DriverType driverType;
     private static EnvironmentType environmentType;
@@ -24,6 +29,7 @@ public class AllDriverManager {
         environmentType = FileReaderManager.getInstance().getConfigFileReader().getEnvironment();
     }
 
+    /* Method createLocalDriver created explaining steps required using webdriver to create a local connection for automated testing */
     private WebDriver createLocalDriver() {
         switch (driverType) {
             case CHROME:
@@ -54,10 +60,12 @@ public class AllDriverManager {
         return webDriver;
     }
 
+    /* Method createRemoteDriver created explaining steps required using webdriver to create a remote connection for automated testing */
     private WebDriver createRemoteDriver() {
         throw new RuntimeException("Remote web driver is not yet implemented");
     }
 
+    /* Method createDriver created explaining and allowing user to determine whether you want to create a local or remote connection for automated testing */
     private WebDriver createDriver() {
         switch (environmentType) {
             case LOCAL:
@@ -70,13 +78,30 @@ public class AllDriverManager {
         return webDriver;
     }
 
+    /* Method getDriver determines if the driver is already created or needs to be created */
     public WebDriver getDriver() {
         if (webDriver == null) webDriver = createDriver();
         return webDriver;
     }
 
+    /* Method closeDriver quits and closes the driver */
     public void closeDriver() {
         webDriver.close();
         webDriver.quit();
     }
+
+    /* Commented out code relevant to the commented out Privacy Policy and Site Terms feature.
+    I couldn't get the webdriver to handle testing new tab functionality to work hence commenting out */
+////    public WebDriver switchToNewTab() {
+//    public void switchToNewTab () {
+//        WebDriver wd = getCurrentWebDriver();
+////        getDriver();
+//        //get window handlers as list
+//        ArrayList<String> browserTabs = new ArrayList<String>(wd.getWindowHandles());
+////switch to new tab
+//        wd.switchTo().window(browserTabs.get(1));
+////check is it correct page opened or not (e.g. check page's title)
+////        webDriver.close();
+////        webDriver.switchTo().window(browserTabs.get(0));
+//    }
 }

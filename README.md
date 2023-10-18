@@ -1,38 +1,42 @@
-# Selenium Cucumber Framework
+# Hudl Login Page Automation Framework
 
 ---
 
-## Project Purpose
-This project aims to give an inspiring or sample of automation test framework that uses Selenium and Cucumber with Java as the programming language.
+## Project Overview
+This project aims to test the Login Page feature of the Hudl website (https://www.hudl.com/en_gb/) using a Selenium (WebDriver) / Cucumber, Java based automation test framework.
 
-You can see pieces of framework components that build on every git branch.
-For example, you want to see how `Hooks` is implemented in the framework.
-Just select the `Hooks` branch then you will see the magic.
+**Selenium (WebDriver):**
+- Is an open-source collection of APIs which is used for testing web applications. 
+- The Selenium Webdriver tool is used for automating web application testing to verify that it works as expected or not.
+- WebDriver also enables you to use a programming language in creating your test scripts (Java is used in this framework)
 
-![select branch](https://github.com/yazidisme/image-attachment/blob/master/seleniumcucumberframework1.png)
-
-If you want to go back to the current branch, you can select `main` as the default branch.
+**Cucumber:**
+- Is an open-source software testing process that deals with an application's behavior.
+- It tests applications as a behavior-driven development (BDD) style.
+- Cucumber tests are written in a simple, natural language that anyone can understand, even people who are not technical experts.
+- Written as BDD test scenarios using Gherkin syntax (Each scenario should include the Given, When, and Then steps).
 
 ---
 
 ## Tools and Libraries
-This project using 2 main tools, Selenium and Cucumber.
-On the other hand, I using some of the tools that support this great framework.
-The complete list of tools, you can see in the `pom.xml` file.
+This project uses 2 main tools, Selenium and Cucumber.
+The complete list of tools and dependencies, you can see in the `pom.xml` file.
 
-## Requirements
-* Java Development Kit
+## Requirements (The following are required on your local machine)
+* Java Development Kit (JDK)
+* IDE (IntelliJ, Visual Studio etc.)
 * Maven
-* WebDriver, using ChromeDriver
+* WebDriver, using ChromeDriver (FirefoxDriver, EdgeDriver and SafariDriver also can be used if necessary)
 
 ## Running Tests
-* Clone the repository from your fork to this directory
-* Open the project using any Java IDE
-* Run the tests with the script below
+1. Clone the 'loginTestFramework' repository
+2. Open the project using any Java IDE (IntelliJ was used when creating this)
+3. Checkout to the 'master' branch 
+4. Run the tests with the script below:
 ```shell
 $ mvn clean install
 ```
-* If you want to run the specific test, use the cucumber tags like this
+* If you want to run the specific test, use the cucumber tags (Tags can be found from `src/test/resources/features/LoginTests.feature`)
 ```shell
 $ mvn clean install -Dcucumber.filter.tags="@REPLACE_WITH_ANY_TAGS_THAT_YOU_WANT"
 ```

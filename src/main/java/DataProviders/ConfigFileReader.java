@@ -11,11 +11,16 @@ import java.util.Properties;
 
 public class ConfigFileReader {
 
+    /* Instantiating property class to enable configuration properties to be pulled from one persistent .properties file */
     private final Properties properties;
 
+    /* Simple implementation to read configuration files */
     public ConfigFileReader() {
+        /* A BufferedReader object is used to read files line-by-line as individual String objects */
         BufferedReader bufferedReader;
+        /* FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using File or Blob objects to specify the file or data to read. */
         FileReader fileReader;
+        /* Defining path of configuration.properties file as a string */
         String propertyFilePath = "config/configuration.properties";
 
         try {
@@ -35,6 +40,7 @@ public class ConfigFileReader {
         }
     }
 
+    /* A string is used to extract and define the current url */
     public String getUrl() {
         String url = properties.getProperty("url");
 
@@ -44,10 +50,10 @@ public class ConfigFileReader {
             throw new RuntimeException("url not specified in the config file.");
     }
 
+    /* Object used to determine the timeout to use for all tests from the .properties file and is defined as a string "timeout" */
     public long getTime() {
         String timeout = properties.getProperty("timeout");
 
-        //Common If...Else
         if (timeout != null) {
             return Long.parseLong(timeout);
         } else {
@@ -55,6 +61,7 @@ public class ConfigFileReader {
         }
     }
 
+    /* DriverType object used to determine the web browser to use for all tests from the .properties file e.g. chrome, firefox, edge, safari */
     public DriverType getBrowser()  {
         String browserName = properties.getProperty("browser");
 
@@ -72,6 +79,7 @@ public class ConfigFileReader {
         }
     }
 
+    /* EnvironmentType object used to determine the type of environment to use for all tests from the .properties file e.g. Local or Remote*/
     public EnvironmentType getEnvironment() {
         String environmentName = properties.getProperty("environment");
 

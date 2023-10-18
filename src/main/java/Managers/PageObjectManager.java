@@ -1,43 +1,44 @@
 package Managers;
 
 import PageObjects.HomePage;
+import PageObjects.HudlPage;
 import PageObjects.LoginPage;
 import org.openqa.selenium.WebDriver;
-import PageObjects.ProductDetailPage;
-import PageObjects.ProductListPage;
 
+/* PageObjectManager globally accessible class is created in order to mange all the page's object in this framework in one instance class.
+This also makes sure that the same object should not be created again and again.
+But to use a single object for all the step definition files. */
 public class PageObjectManager {
 
+    /* Instantiating all objects required when defining the PageObjectManager class */
     private final WebDriver webDriver;
-    private HomePage homePage;
+    private HudlPage hudlPage;
     private LoginPage loginPage;
-    private ProductListPage productListPage;
-    private ProductDetailPage productDetailPage;
+
+    private HomePage homePage;
 
     public PageObjectManager(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    //Short Hand If...Else
-    public HomePage getHomePage() {
-        return (homePage == null) ? homePage = new HomePage(webDriver) : homePage;
+    public HudlPage getHudlPage() {
+        if (hudlPage == null) {
+            hudlPage = new HudlPage(webDriver);
+        }
+        return hudlPage;
     }
 
-    //General If...Else
     public LoginPage getLoginPage() {
-
         if (loginPage == null) {
             loginPage = new LoginPage(webDriver);
         }
         return loginPage;
     }
 
-    public ProductListPage getProductListPage() {
-        return (productListPage == null) ? productListPage = new ProductListPage(webDriver) : productListPage;
-    }
-
-    public ProductDetailPage getProductDetailPage() {
-        if (productDetailPage == null) productDetailPage = new ProductDetailPage(webDriver);
-        return productDetailPage;
+    public HomePage getHomePage() {
+        if (homePage == null) {
+            homePage = new HomePage(webDriver);
+        }
+        return homePage;
     }
 }
